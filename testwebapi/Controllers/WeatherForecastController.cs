@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
+using testwebapi.Service;
 namespace testwebapi.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private static IContainer _container { get; set; }
+
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -35,5 +40,31 @@ namespace testwebapi.Controllers
             })
             .ToArray();
         }
+        [HttpGet]
+        [Route("Write")]
+        public IEnumerable<string> Write()
+        {
+            var build = new ContainerBuilder();
+            build.RegisterType<OutPutNowDate>().As<IOutPutNowDate>();
+            //build.RegisterType<IOutput>().As<ConsoleOutPut>();
+            _container=build.Build();
+            // Create the scope, resolve your IDateWriter,
+            // use it, then dispose of the scope.
+          var aaa=  _container.Resolve<IOutPutNowDate>();
+            aaa.WriteDate();
+            return null;
+        }
+
+        public static void aaa()
+        {
+            using (var scope = _container.BeginLifetimeScope())
+            {
+                var writer = scope.Resolve<IOutPutNowDate>();
+                writer.WriteDate();
+            }
+
+        }
     }
+
+   
 }

@@ -57,23 +57,38 @@ namespace testwebapi
 
         }
         //配置中间件
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //中间件是必须的，中间件就是处理http请求和响应
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //判断当前开发环境
             if (env.IsDevelopment())
             {
+                //显示开发异常页面中间件
                 app.UseDeveloperExceptionPage();
             }
+            byte[] testa = new byte[20];
+            testa.Append(Convert.ToByte('a'));
+            app.Use(async (context, next) =>
+            {
+                context.Response.WriteaSync()
+                 context.Response.Redirect("https://www.baidu.com");//在下一个中间件之前执行的
+                await next();
+                context.Response.Redirect("https://www.qq.com");//在下一个中间件之后执行的
+            });
+
 
             app.UseHttpsRedirection();
-
+            //终结点(断点) 路由中间件
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //终结点中间件，这里是配置中间件和路由之间的关系，映射
+            //必须和路由中间件配合使用
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllers();
+                
             });
         }
     }

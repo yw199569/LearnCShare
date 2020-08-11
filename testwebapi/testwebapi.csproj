@@ -6,6 +6,9 @@
 
 
   <ItemGroup>
-    <Folder Include="Ser%27vice\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.2.0" />
   </ItemGroup>
 </Project>
