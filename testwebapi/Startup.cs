@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using testwebapi.Service;
+using Microsoft.AspNetCore.Http;
 
 namespace testwebapi
 {
@@ -70,10 +71,10 @@ namespace testwebapi
             testa.Append(Convert.ToByte('a'));
             app.Use(async (context, next) =>
             {
-                context.Response.WriteaSync()
-                 context.Response.Redirect("https://www.baidu.com");//在下一个中间件之前执行的
+                
+                await context.Response.WriteAsync("Hello");//在下一个中间件之前执行的
                 await next();
-                context.Response.Redirect("https://www.qq.com");//在下一个中间件之后执行的
+                //context.Response.Redirect("https://www.qq.com");//在下一个中间件之后执行的
             });
 
 
@@ -82,6 +83,8 @@ namespace testwebapi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<TestMiddleWare.MiddleWare>();//通用的添加使用自定义中间件 
             //终结点中间件，这里是配置中间件和路由之间的关系，映射
             //必须和路由中间件配合使用
             app.UseEndpoints(endpoints =>
