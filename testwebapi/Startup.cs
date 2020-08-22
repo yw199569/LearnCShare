@@ -54,7 +54,7 @@ namespace testwebapi
             //注册一个自定义的服务 
             services.AddSingleton<ISendMsg,SendQQ>();
             //注册一个自定义的依赖服务
-            services.AddMessage(a=>a.SendQQ());
+            //services.AddMessage(a=>a.SendQQ());
 
         }
         //配置中间件
