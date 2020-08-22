@@ -22,7 +22,7 @@
         public void test()
         {
             short x = 1, y = 1;
-            short z= x + y;  //报错 因为short相加C#duishort进行了隐式的转换，转换到了int类型，返回的是int类型
+            //short z= x + y;  //报错 因为short相加C#duishort进行了隐式的转换，转换到了int类型，返回的是int类型
         }
 
 

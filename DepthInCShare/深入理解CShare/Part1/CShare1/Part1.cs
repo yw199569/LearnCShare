@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 namespace Part1
 {
    public class Products
@@ -11,19 +12,19 @@ namespace Part1
 
         public Products(string name,decimal price)
         {
-            this.Name=name;
-            this.Price=price;
+            this._name=name;
+            this._price=price;
         }
 
       public static ArrayList GetSmallProducts()
       {
           ArrayList list=new ArrayList();
-          list.add(new Products("one",1));
-          list.add(new Products("two",2));
-         list.add(new Products("there",3));
+          list.Add(new Products("one",1));
+          list.Add(new Products("two",2));
+          list.Add(new Products("there",3));
          return list;
       }        
-      public static override string ToString()
+      public override string ToString()
       {
           return string.Format("{0},{1}",Name,Price);
       }
