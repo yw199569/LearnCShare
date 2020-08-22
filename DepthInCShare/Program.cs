@@ -12,6 +12,9 @@ namespace DepthInCShare
                 System.Console.WriteLine(item);
             }
 
+            Part1.Products a=new Part1.Products("j",18);
+            System.Console.WriteLine(a.ToString());
+
         }
     }
 }
