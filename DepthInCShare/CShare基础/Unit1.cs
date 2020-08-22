@@ -21,7 +21,7 @@
         //byte ，sbyte,short,ushort 在进行运算的时候C#会按需对他们进行隐式转换，转换到大一点的整数类型。
         public void test()
         {
-            short x = 1, y = 1;
+            //short x = 1, y = 1;
             //short z= x + y;  //报错 因为short相加C#duishort进行了隐式的转换，转换到了int类型，返回的是int类型
         }
 

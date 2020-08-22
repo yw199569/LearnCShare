@@ -1,27 +1,26 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 namespace Part1
 {
    public class Products
     {
-        string _name;
-        public string Name{get{return _name; }}
-        decimal _price;
+        public string Name{get;private set;}
 
-        public decimal Price{get{return _price;}}
+        public decimal Price{get;private set;}
 
         public Products(string name,decimal price)
         {
-            this._name=name;
-            this._price=price;
+            Name=name;
+            Price=price;
         }
 
-      public static ArrayList GetSmallProducts()
+      public static List<Products> GetSmallProducts()
       {
-          ArrayList list=new ArrayList();
-          list.Add(new Products("one",1));
-          list.Add(new Products("two",2));
-          list.Add(new Products("there",3));
+          List<Products> list=new List<Products>
+          {
+              new Products("one",1),
+              new Products("two",2)
+          };
          return list;
       }        
       public override string ToString()
