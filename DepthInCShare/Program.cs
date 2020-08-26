@@ -14,6 +14,7 @@ namespace DepthInCShare
             //{
             //    Console.WriteLine(item);
             //}
+            //排序 由自定义的实现icomprare接口 到icomprare<>强类型 到委托实现icomprare 到lambda表达式进化
             foreach (var item in arrayList)
             {
 
