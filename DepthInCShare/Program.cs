@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 
 namespace DepthInCShare
 {
@@ -6,15 +8,20 @@ namespace DepthInCShare
     {
         static void Main(string[] args)
         {
-            var templist = Part1.Products.GetSmallProducts();
-            foreach (var item in templist)
+
+            var arrayList = Part1.Products.GetSmallProducts();
+            //foreach (var item in arrayList.OrderBy(x=>x.Name))
+            //{
+            //    Console.WriteLine(item);
+            //}
+            foreach (var item in arrayList)
             {
-                System.Console.WriteLine(item);
+
+                if (item.Price>2)
+                {
+                    Console.WriteLine(item);
+                }
             }
-
-            Part1.Products a=new Part1.Products("j",18);
-            System.Console.WriteLine(a.ToString());
-
         }
     }
 }
