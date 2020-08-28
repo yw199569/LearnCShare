@@ -7,6 +7,10 @@ namespace DepthInCShare
 {
     class Program
     {
+         public static string MyProperty { 
+              get=>MyProperty;
+                set => MyProperty = value ?? throw new ArgumentNullException(nameof(value), $"{nameof(MyProperty)} cannot be null");
+              }
         static void Main(string[] args)
         {
 
@@ -48,6 +52,8 @@ namespace DepthInCShare
             //}
             #endregion
 
+            //nameof()方法，返回的就是当前对象的名称
+           Console.WriteLine(Program.MyProperty);
         }
     }
 }
