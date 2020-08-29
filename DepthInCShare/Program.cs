@@ -9,7 +9,7 @@ namespace DepthInCShare
     {
          public static string MyProperty { 
               get=>MyProperty;
-                set => MyProperty = value ?? throw new ArgumentNullException(nameof(value), $"{nameof(MyProperty)} cannot be null");
+              set => MyProperty = value ?? throw new ArgumentNullException(nameof(value), $"{nameof(MyProperty)} cannot be null");
               }
         static void Main(string[] args)
         {
@@ -53,7 +53,28 @@ namespace DepthInCShare
             #endregion
 
             //nameof()方法，返回的就是当前对象的名称
-           Console.WriteLine(Program.MyProperty);
+        // Console.WriteLine(nameof(System.String));------  String
+        // int j = 5;
+        // Console.WriteLine(nameof(j));  ------j
+        // List<string> names = new List<string>();
+        // Console.WriteLine(nameof(names)); ------names
+          // Console.WriteLine(Program.MyProperty); ------MyProperty
+
+        // string s=null;
+        // System.Console.WriteLine(s?.Length);
+        //?.如果问号左边为空则直接返回null
+        
+        // try 
+        // {
+        //     string s = null;
+        //     Console.WriteLine(s.Length);
+
+        // } catch (Exception e) when (false)
+        // {
+        // }
+        //when可以加判断条件，条件返回bool，决定要不要进catch
+
+      
         }
     }
 }
