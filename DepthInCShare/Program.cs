@@ -78,7 +78,8 @@ namespace DepthInCShare
             // }
             //when可以加判断条件，条件返回bool，决定要不要进catch
 
-            #region 扩展方法
+            #region C#扩展方法
+            //扩展方法是一个对无需对现有的类修改，就能实现现有的类，和不修改原来的类就能修改实现的方法
             // Products products=new Products();
             // products.TestExtensions();
             // Part1.Extensions.Extensions.SetExtensions(products);
