@@ -25,7 +25,7 @@ namespace DepthInCShare
            //async.Step1();
             Part2.Delegate.Delegate testdel=new Part2.Delegate.Delegate();
             
-    testdel.TestDelegateAddRemove();
+            testdel.TestDelegateAddRemove();
 
         }
     }
