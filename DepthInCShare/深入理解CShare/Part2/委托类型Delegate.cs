@@ -2,6 +2,7 @@ namespace Part2.Delegate {
     delegate void StringProcessor (string input);
 
     public class Delegate {
+        //委托类型实际上只是参数类型的一个列表以及一个返回类型。它规定了类型的实例能标示的操作
         //简单委托的构成
         //1、声明委托类型；
         //2、必须有一个方法包含了要执行的代码
@@ -50,7 +51,7 @@ namespace Part2.Delegate {
             var list = StringProcessor.Combine (pp, ppp);//把多个委托添加到委托链
             System.Delegate[] delegateList = list.GetInvocationList ();//获取当前委托的委托链列表
             foreach (StringProcessor item in delegateList) {
-                item.Invoke ("a");//循环执行委托链里面的方法
+                item("a");//循环执行委托链里面的方法
             }
         }
 
