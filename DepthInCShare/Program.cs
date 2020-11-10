@@ -19,13 +19,12 @@ namespace DepthInCShare
             Part1.LinqLearn.LinqLearn linq=new Part1.LinqLearn.LinqLearn();
             //linq.TestProgram();
             #endregion
-           
 
            Part1.asyncANDawait异步函数.async异步函数 async=new Part1.asyncANDawait异步函数.async异步函数();
            //async.Step1();
             Part2.Delegate.Delegate testdel=new Part2.Delegate.Delegate();
             
-            testdel.TestDelegateAddRemove();
+            //testdel.TestDelegateAddRemove();
 
         }
     }

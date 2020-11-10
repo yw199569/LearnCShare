@@ -74,5 +74,4 @@ namespace Part2.Delegate {
             System.Console.WriteLine (note);
         }
     }
-
 }
