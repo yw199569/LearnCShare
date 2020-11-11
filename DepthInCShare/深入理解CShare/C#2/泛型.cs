@@ -1,4 +1,4 @@
-namespace DepthInCShare.深入理解CShare.C#2
+namespace DepthInCShare.深入理解CShare.C2
 {
     public class FanXin
     {
