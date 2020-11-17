@@ -30,8 +30,14 @@ namespace DepthInCShare.深入理解CShare.C2
         //struct RefSample<T> where T :class   --表示泛型必须是class类型的
 
 
-        //1、值类型约束，确保参数使用的类型是值类型
+        //2、值类型约束，确保参数使用的类型是值类型
         //class ValueSample<T> where T:struct  --表示泛型参数必须是引用类型的
+
+        //3、构造函数类型约束
+        //构造函数约束表示为T:new(),必须是所有类型参数的最后一个约束，它检查类型实参是否有一个可用于创建类型实例的无参构造函数。
+        // T CreateInstance<T>() when T:new()   该方法规定了参数必须有一个无参数的构造函数
+        
+        
 
 
     }
