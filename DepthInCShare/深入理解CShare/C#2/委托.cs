@@ -26,10 +26,9 @@ namespace DepthInCShare.深入理解CShare.C2
                 int data;
                 while((data=stream.ReadByte())!=-1)
                 {
-                    System.Console.WriteLine(data);
+                    Console.WriteLine(data);
                 }
             }
-
         }
         
     }
