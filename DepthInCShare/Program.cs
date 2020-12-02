@@ -27,7 +27,20 @@ namespace DepthInCShare
             //testdel.TestDelegateAddRemove();
 
             深入理解CShare.C2.Delegates delegates = new 深入理解CShare.C2.Delegates();
-            delegates.TestMethod();
+            //delegates.TestMethod();
+
+
+            //delegates.TestHEMethod();
+            object[] lis = new object[2];
+            lis[0] = 1;
+            lis[1] = 2;
+            深入理解CShare.C2.Enumerable enumerable = new 深入理解CShare.C2.Enumerable(lis);
+            while (enumerable.MoveNext())
+            {
+                Console.WriteLine(enumerable.Current);
+            }
+            enumerable.Reset();
+
 
         }
     }

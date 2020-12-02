@@ -186,6 +186,75 @@ namespace DepthInCShare.深入理解CShare.C2
         }
 
         //捕获的外部变量，只要有任何委托实例在引用它，他就会一直存在。
+
+
+
+
+        #region 局部变量实例化
+        List<MethodInvoker> list = new List<MethodInvoker>();
+        public void testDelegateMethod()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+
+                int counts = i * 10;
+                list.Add(delegate//这个地方是把打印counts的方法添加进了委托数组里面
+                {//每一个委托方法都捕获了当前循环的counts的数存进委托数组里
+
+                    Console.WriteLine(counts);
+                    counts++;
+                });
+            }
+            foreach (var item in list)
+            {
+                item();
+            }
+            list[0]();
+            list[0]();
+            list[1]();
+        }
         #endregion
+
+
+        //共享和非共享的变量混合使用
+        public void TestHEMethod()
+        {
+            MethodInvoker[] deleGate = new MethodInvoker[2];
+            int outsid = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                int inside = 0;
+                deleGate[i] = delegate
+                {
+                    Console.WriteLine("({0},{1})", outsid, inside);
+                    outsid++;//外部变量没有实例化，会一直叠加
+                    inside++;//内部变量，实例化了，同一个委托方法调用多次会叠加，不同的委托方法调用不会叠加
+
+                };
+            }
+            MethodInvoker first = deleGate[0];
+            MethodInvoker second = deleGate[1];
+            first();
+            first();
+            first();
+
+            second();
+            second();
+        }
+
+        #endregion
+
+
+        //捕获变量(匿名委托)的使用规则和小结
+        //如果用或不用捕获变量时的代码同样简单，那就不要用。
+        //捕获有for或foreach语句声明的变量之前，思考你的委托是否需要在循环迭代结束之后延续，以及是否想让它看到那个变量的后须值。如果不是，就要在循环内另建一个变量来复制你想要的值
+
+
+
+        //要点
+        //捕获的是变量，而不是创建委托实例时它的值；
+        //捕获的变量的生存期被延长了，至少和捕捉它的委托一样长。
+        //多个委托可以捕获同一个变量
+        //在for循环的声明中创建的变量仅在循环持续期间有效----不会在每次循环迭代时都实例化
     }
 }
