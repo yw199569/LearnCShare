@@ -35,12 +35,26 @@ namespace DepthInCShare
             lis[0] = 1;
             lis[1] = 2;
             深入理解CShare.C2.Enumerable enumerable = new 深入理解CShare.C2.Enumerable(lis);
-            while (enumerable.MoveNext())
-            {
-                Console.WriteLine(enumerable.Current);
-            }
-            enumerable.Reset();
+            //while (enumerable.MoveNext())
+            //{
+            //    Console.WriteLine(enumerable.Current);
+            //}
+            //enumerable.Reset();
+            IEnumerable<int> iterable = 深入理解CShare.C2.Enumerable.CreateEnumerable();
+            IEnumerator<int> iterator = iterable.GetEnumerator();
 
+            //foreach (var item in 深入理解CShare.C2.Enumerable.CreateEnumerable())
+            //{
+
+            //}
+
+            //深入理解CShare.C2.Enumerable.CreateEnumerable();
+
+            while (iterator.MoveNext())
+            {
+                Console.WriteLine(iterator.Current);
+            }
+            iterator.Reset();
 
         }
     }

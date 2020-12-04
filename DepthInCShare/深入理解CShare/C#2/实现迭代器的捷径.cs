@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DepthInCShare.深入理解CShare.C2
 {
     public class Enumerable : IEnumerable
     {
         //实现迭代器的途径
+
+        #region 手写迭代器
         object[] values;
         int startingPoint;
-        #region 手写迭代器
         public Enumerable(object[] values)
         {
             this.values = values;
             startingPoint = -1;
         }
-        public Enumerable(object[] values, int startingPoint)
-        {
-            this.values = values;
-            this.startingPoint = startingPoint;
-        }
-        public bool MoveNext()
+        public bool MoveNext()//判断数组是否有还有下一个值
         {
             if (startingPoint < values.Length)
             {
@@ -27,7 +24,7 @@ namespace DepthInCShare.深入理解CShare.C2
             }
             return startingPoint < values.Length;
         }
-        public object Current
+        public object Current//返回数组的每一个值
         {
             get
             {
@@ -43,16 +40,47 @@ namespace DepthInCShare.深入理解CShare.C2
 
         }
 
-        public void Reset()
+        public void Reset()//执行完成之后重置迭代原始值
         {
             startingPoint = -1;
         }
 
+
+
+        #endregion
+
+        #region 利用yield语句简化迭代器
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
-        }
+            for (int i = 0; i < values.Length; i++)
+            {
+                yield return values[(i + startingPoint) % values.Length];
+                //使用yield return语句可一次返回一个元素
+                //yield return 可通过foreach或linq查询来使用从迭代器方法返回的序列。foreach循环的每次迭代都会调用迭代器方法。迭代器方法运行到yield return语句的时候，会返回结果，并保留当前在代码种的位置，下次调用迭代器函数时，将从该位置重新开始执行
 
+
+                //yield break 语句来终止迭代；
+
+            }
+        }
+        #endregion
+
+        #region 观察迭代器的工作流程
+
+        static readonly string padding = new string(' ', 30);
+        public static IEnumerable<int> CreateEnumerable()
+        {
+            Console.WriteLine("{0}Start of CreateEnumerable()", padding);//只会执行一次
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("{0} About to yield{1}", padding, i);//每次循环都从yield return出重新开始
+                yield return i;
+
+            }
+            Console.WriteLine("{0}Yielding finl value", padding);//下面也只会执行一次
+            yield return -1;
+            Console.WriteLine("{0}End of CreateEnumerable()", padding);
+        }
         #endregion
 
     }
