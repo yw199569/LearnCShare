@@ -74,7 +74,11 @@ namespace DepthInCShare.深入理解CShare.C2
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine("{0} About to yield{1}", padding, i);//每次循环都从yield return出重新开始
-                yield return i;
+                yield return i;//告诉编译器下次循环从这里开始
+                if (i == 2)
+                {
+                    yield break;//结束循环
+                }
 
             }
             Console.WriteLine("{0}Yielding finl value", padding);//下面也只会执行一次
