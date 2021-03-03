@@ -7,6 +7,5 @@
 
   <ItemGroup>
     <Folder Include="数据结构\" />
-    <Folder Include="数据结构\线性表\" />
   </ItemGroup>
 </Project>
